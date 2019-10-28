@@ -10,7 +10,7 @@ export const userTable = `
   )`;
 
 export const attributeTable = `
-CREATE TABLE IF NOT EXIST Attribute (
+CREATE TABLE IF NOT EXIST Attributes (
   id SERIAL PRIMARY KEY,
   attribute varchar(255)
 )`;

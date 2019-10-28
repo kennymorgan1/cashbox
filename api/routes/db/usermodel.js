@@ -64,3 +64,4 @@ User.deleteUser = function (id) {
   }
 }
 
+module.exports = User;

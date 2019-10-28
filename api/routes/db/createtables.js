@@ -1,12 +1,12 @@
 import dotenv from 'dotenv';
 import sql from './db';
-import { UserTable, attributeTable } from './tables'
+import { userTable, attributeTable } from './tables'
 
 dotenv.config();
 
 const createTables = async () => {
 
-  await sql.query(UserTable);
+  await sql.query(userTable);
   await sql.querry(attributeTable);
   await sql.end();
   console.log('User and Attribute tables created successfully');
