@@ -1,27 +1,33 @@
-const sql = require('../db');
+const sql = require('./db');
 
 let User = function(user) {
   this.first_name = user.first_name;
   this.surname = user.surname;
   this.date_of_birth = user.date_of_birth;
   this.age = user.age;
-  this.attribute = user.attribute;
   this.created_at = new Date();
 };
 
 User.createUser = function (newUser) {
   try {
-    const { first_name, surname, date_of_birth, age, attribute } = newUser;
+    const { first_name, surname, date_of_birth, age } = newUser;
 
     const query = `
-    INSERT INTO Users(first_name, surname, date_of_birth, age, attribute)
-    VALUES ('${first_name}', '${surname}', '${date_of_birth}', '${age}', '${attribute}')
+    INSERT INTO Users(first_name, surname, date_of_birth, age)
+    VALUES ('${first_name}', '${surname}', '${date_of_birth}', '${age}')
     RETURNING *
     `;
 
+    console.log(query);
+
     const res = sql.query(query);
+
+    console.log('this is the response', res);
+
     return res;
   } catch(error) {
+    console.log('this is an error', error);
+
     return error;
   }
 }

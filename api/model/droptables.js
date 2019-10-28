@@ -1,5 +1,5 @@
-import sql from './db';
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
+const sql = require('./db');
 
 dotenv.config();
 
