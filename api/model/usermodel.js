@@ -8,9 +8,15 @@ let User = function(user) {
   this.created_at = new Date();
 };
 
-User.createUser = function (newUser) {
+User.createUser = async (newUser) => {
   try {
-    const { first_name, surname, date_of_birth, age } = newUser;
+    const { first_name, surname, date_of_birth } = newUser;
+    const currentYear = new Date().getFullYear();
+
+    const birthYear = new Date(date_of_birth).getFullYear();
+    console.log(currentYear, birthYear);
+    const age = currentYear - birthYear;
+    console.log(age);
 
     const query = `
     INSERT INTO Users(first_name, surname, date_of_birth, age)
@@ -20,11 +26,10 @@ User.createUser = function (newUser) {
 
     console.log(query);
 
-    const res = sql.query(query);
+    const res = await sql.query(query)
+    console.log(res.rows[0]);
 
-    console.log('this is the response', res);
-
-    return res;
+    return res.rows[0];
   } catch(error) {
     console.log('this is an error', error);
 

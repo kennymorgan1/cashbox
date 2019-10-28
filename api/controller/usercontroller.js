@@ -1,19 +1,16 @@
 const User = require('../model/usermodel');
-const Response = require('../helpers/response');
+const {Response} = require('../helpers/response');
 
-exports.createUser = function(req, res) {
+exports.createUser = async (req, res) => {
   const userObj = req.body;
-  User.createUser(userObj, function(err, user) {
-    if (err) {
-      console.log(err);
 
-      Response(res, err.message, 400, err )
-    } else {
-      console.log(user);
+  const user = await User.createUser(userObj);
 
-      Response(res, 'User added successfully', 201, user)
-    }
-  });
+  if (!user) {
+    return Response(res, 'User added successfully', 500, { error: 'internal server error'})
+  }
+
+  return Response(res, 'User added successfully', 201, user)
 }
 
 exports.listUsers = function(req, res) {
