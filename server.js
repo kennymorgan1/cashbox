@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const client = require('./api/model/db');
 const userRoute = require('./api/route/userroutes');
+const attributeRoute = require('./api/route/attributeroute');
 
 const app = express();
 dotenv.config();
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/user', userRoute);
+app.use('/api/v1/attribute', attributeRoute);
 
 const port = process.env.PORT || 7000;
 

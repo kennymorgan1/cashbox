@@ -10,5 +10,6 @@ exports.userTable = `
 exports.attributeTable = `
 CREATE TABLE IF NOT EXISTS Attributes (
   id SERIAL PRIMARY KEY,
-  attribute varchar(255)
+  user_id int,
+  FOREIGN KEY (user_id) REFERENCES Users (id)
 )`;

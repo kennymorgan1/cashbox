@@ -38,34 +38,32 @@ User.getAllUsers = async () => {
     const res = await sql.query(query);
     return res.rows;
   } catch (error) {
-    console.log(error);
-
     return error;
   }
 }
 
-User.updateUser = function (updateUser) {
+User.updateUser = async (updateUser) => {
   try {
     const { first_name, surname, date_of_birth, age, attribute, id } = updateUser;
     const query = `
     Update Users SET first_name = ${first_name}, surname = ${surname}, date_of_birth = ${date_of_birth}, age = ${age}, attribute = ${attribute}
     WHERE id = ${Number(id)}
     `;
-    const res = sql.query(query);
-    return res;
+    const res = await sql.query(query);
+    return res.rows[0];
   } catch(error) {
     return error;
   }
 }
 
-User.deleteUser = function (id) {
+User.deleteUser = async (id) => {
   try {
     const query = `
     DELETE from Users WHERE id = ${Number(id)}
     RETURNING id
     `;
-    const res = sql.query(query);
-    return res;
+    const res = await sql.query(query);
+    return res.rows[0];
   } catch(error) {
     return error;
   }

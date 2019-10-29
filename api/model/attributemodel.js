@@ -1,17 +1,16 @@
-const sql = require('../db');
+const sql = require('./db');
 
 let Attribute = function(attribute) {
   this.attribute = attribute.attribute;
 };
 
-Attribute.createAttribute = function (newAttribute) {
+Attribute.createAttribute = async (newAttribute) => {
   try {
     const { attribute } = newAttribute;
 
     const query = `
-    INSERT INTO Attributes(attribute)
-    VALUES ('${attribute}')
-    RETURNING *
+    ALTER TABLE Attributes
+    ADD COLUMN ${attribute} varchar(255);
     `;
 
     const res = sql.query(query);
@@ -32,14 +31,15 @@ Attribute.getAllAttributes = function() {
   }
 }
 
-Attribute.updateAttribute = function (updateAttribute) {
+Attribute.updateAttribute = async (updateAttribute) => {
   try {
-    const { attribute, id } = updateAttribute;
+    const { attribute, newAttribute } = updateAttribute;
     const query = `
-    Update Attributes SET attribute = ${attribute}
-    WHERE id = ${Number(id)}
+    ALTER TABLE Attributes
+    RENAME COLUMN ${attribute} TO ${newAttribute};
     `;
     const res = sql.query(query);
+
     return res;
   } catch(error) {
     return error;

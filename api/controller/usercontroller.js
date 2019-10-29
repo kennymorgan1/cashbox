@@ -6,7 +6,7 @@ exports.createUser = async (req, res) => {
 
   const user = await User.createUser(userObj);
 
-  if (!user) {
+  if (user.name == 'error') {
     return Response(res, 'An Error Ocured', 500, { error: 'internal server error'})
   }
 
