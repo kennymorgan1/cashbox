@@ -23,10 +23,14 @@ Attribute.createAttribute = async (newAttribute) => {
 Attribute.getAllAttributes = async() => {
   try {
     const query =  `
-    DESCRIBE Attributes
+    SELECT * FROM Attributes
     `;
+
     const res = await sql.query(query);
-    return res;
+    const field = res.fields.map(field => field.name);
+    console.log(field);
+
+    return field;
   } catch (error) {
     return error;
   }
