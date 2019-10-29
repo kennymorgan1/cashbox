@@ -35,13 +35,14 @@ exports.updateAttribute = async (req, res) => {
   return Response(res, 'Attribute updated successfully', 200, column)
 }
 
-exports.deleteAttribute = function(req, res) {
-  const id = req.params.id;
-  Attribute.deleteAttribute(id, function(err, column) {
-    if (err) {
-      Response(res, err.message, 400, err )
-    } else {
-      Response(res, 'Sucess', 200, column)
-    }
-  });
+exports.deleteAttribute = async (req, res) => {
+  const columnObj = req.body;
+
+  const column = await Attribute.deleteAttribute(columnObj);
+
+  if (column.name == 'error') {
+    return Response(res, 'An Error Ocured', 500, { error: 'internal server error'})
+  }
+
+  return Response(res, 'Attribute deleted successfully', 200, column)
 }

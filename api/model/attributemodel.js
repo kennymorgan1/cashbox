@@ -13,7 +13,7 @@ Attribute.createAttribute = async (newAttribute) => {
     ADD COLUMN ${attribute} varchar(255);
     `;
 
-    const res = sql.query(query);
+    const res = await sql.query(query);
     return res;
   } catch(error) {
     return error;
@@ -38,7 +38,7 @@ Attribute.updateAttribute = async (updateAttribute) => {
     ALTER TABLE Attributes
     RENAME COLUMN ${attribute} TO ${newAttribute};
     `;
-    const res = sql.query(query);
+    const res = await sql.query(query);
 
     return res;
   } catch(error) {
@@ -46,13 +46,15 @@ Attribute.updateAttribute = async (updateAttribute) => {
   }
 }
 
-Attribute.deleteAttribute = function (id) {
+Attribute.deleteAttribute = async (deleteAttribute) => {
   try {
+    const { attribute } = deleteAttribute
+
     const query = `
-    DELETE from Attributes WHERE id = ${Number(id)}
-    RETURNING id
+    ALTER TABLE Attributes
+    DROP COLUMN ${attribute}
     `;
-    const res = sql.query(query);
+    const res = await sql.query(query);
     return res;
   } catch(error) {
     return error;
