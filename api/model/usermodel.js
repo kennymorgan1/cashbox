@@ -4,46 +4,42 @@ let User = function(user) {
   this.first_name = user.first_name;
   this.surname = user.surname;
   this.date_of_birth = user.date_of_birth;
-  this.age = user.age;
-  this.created_at = new Date();
+  this.created_at = user.created_at;
 };
 
 User.createUser = async (newUser) => {
   try {
     const { first_name, surname, date_of_birth } = newUser;
-    const currentYear = new Date().getFullYear();
-
-    const birthYear = new Date(date_of_birth).getFullYear();
-    console.log(currentYear, birthYear);
-    const age = currentYear - birthYear;
-    console.log(age);
 
     const query = `
-    INSERT INTO Users(first_name, surname, date_of_birth, age)
-    VALUES ('${first_name}', '${surname}', '${date_of_birth}', '${age}')
+    INSERT INTO Users(first_name, surname, date_of_birth, created_at)
+    VALUES ('${first_name}', '${surname}', '${date_of_birth}', 'Now()')
     RETURNING *
     `;
-
-    console.log(query);
-
     const res = await sql.query(query)
-    console.log(res.rows[0]);
 
     return res.rows[0];
   } catch(error) {
-    console.log('this is an error', error);
-
     return error;
   }
 }
-
-User.getAllUsers = function() {
+User.getAllUsers = async () => {
   try {
-    const res = sql.query = `
-    SELECT * FROM Users
+    const query = `
+    SELECT
+      first_name,
+      surname,
+      date_of_birth,
+      date_part('year',age(date_of_birth)) AS age,
+      created_at
+    FROM Users
     `;
-    return res;
+
+    const res = await sql.query(query);
+    return res.rows;
   } catch (error) {
+    console.log(error);
+
     return error;
   }
 }
