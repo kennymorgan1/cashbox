@@ -20,11 +20,12 @@ Attribute.createAttribute = async (newAttribute) => {
   }
 }
 
-Attribute.getAllAttributes = function() {
+Attribute.getAllAttributes = async() => {
   try {
-    const res = sql.query = `
-    SELECT * FROM Attributes
+    const query =  `
+    DESCRIBE Attributes
     `;
+    const res = await sql.query(query);
     return res;
   } catch (error) {
     return error;
