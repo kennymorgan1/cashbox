@@ -23,16 +23,42 @@ User.createUser = async (newUser) => {
     return error;
   }
 }
+
+User.addAttribute = async (attrData, id) => {
+  try {
+    const { attribute, value } = attrData;
+
+    const userQuery = `SELECT * FROM Attributes WHERE user_id = ${id}`;
+
+    const {rows} = await sql.query(userQuery);
+
+    let query;
+    if(rows.length < 1) {
+      query = `
+      INSERT INTO Attributes(${attribute}, user_id)
+      VALUES ('${value}', '${id}')
+      RETURNING *
+      `;
+    } else {
+      query = `
+      Update Attributes SET ${attribute} = '${value}'
+      WHERE user_id = ${Number(id)}
+      `;
+    }
+    const res = await sql.query(query);
+    return res.rows[0];
+  } catch(error) {
+    return error;
+  }
+}
+
 User.getAllUsers = async () => {
   try {
     const query = `
     SELECT
-      first_name,
-      surname,
-      date_of_birth,
-      date_part('year',age(date_of_birth)) AS age,
-      created_at
+      date_part('year',age(date_of_birth)) AS age, *
     FROM Users
+    LEFT JOIN Attributes ON Users.id = Attributes.user_id
     `;
 
     const res = await sql.query(query);
@@ -42,13 +68,15 @@ User.getAllUsers = async () => {
   }
 }
 
-User.updateUser = async (updateUser) => {
+User.updateUser = async (updateUser, id) => {
   try {
-    const { first_name, surname, date_of_birth, age, attribute, id } = updateUser;
+    const { first_name, surname, date_of_birth } = updateUser;
     const query = `
-    Update Users SET first_name = ${first_name}, surname = ${surname}, date_of_birth = ${date_of_birth}, age = ${age}, attribute = ${attribute}
+    Update Users SET first_name = '${first_name}', surname = '${surname}', date_of_birth = '${date_of_birth}'
     WHERE id = ${Number(id)}
+    RETURNING *
     `;
+
     const res = await sql.query(query);
     return res.rows[0];
   } catch(error) {

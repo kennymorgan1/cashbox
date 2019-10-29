@@ -27,9 +27,9 @@ Attribute.getAllAttributes = async() => {
     `;
 
     const res = await sql.query(query);
-    const field = res.fields.map(field => field.name);
-    console.log(field);
+    console.log(res);
 
+    const field = res.fields.map(field => field.name);
     return field;
   } catch (error) {
     return error;
