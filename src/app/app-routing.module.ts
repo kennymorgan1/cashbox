@@ -2,9 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
+import { DashboardComponent } from './dashboard-layout/pages/dashboard/dashboard.component';
 
 
 export const AppRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: DashboardLayoutComponent
+  },
   {
     path: '',
     component: DashboardLayoutComponent,
@@ -15,6 +25,10 @@ export const AppRoutes: Routes = [
        }
     ]
  },
+ {
+  path: '**',
+  redirectTo: 'dashboard'
+}
 ];
 
 @NgModule({
