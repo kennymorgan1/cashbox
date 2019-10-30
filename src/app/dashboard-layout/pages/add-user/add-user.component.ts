@@ -47,6 +47,7 @@ export class AddUserComponent implements OnInit {
         surname: this.surname.value,
         date_of_birth: this.date_of_birth.value
       };
+      console.log(payload);
       this.forumCreatingProgress();
       this.service.addUser(payload).subscribe(
         (data: any) => {
@@ -62,7 +63,7 @@ export class AddUserComponent implements OnInit {
           this.addingForum = 10;
           clearInterval(this.setTimeProgress);
           setTimeout(() => this.error = false, 5000);
-          console.log(error.error.data[0].constraints);
+          console.log(error);
           this.errorMessage = 'An error occured';
           this.getDisableBtn(false);
           this.loading = false;

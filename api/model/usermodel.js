@@ -21,6 +21,7 @@ User.createUser = async (newUser) => {
 
     return res.rows[0];
   } catch(error) {
+    console.log(error);
     return error;
   }
 }
