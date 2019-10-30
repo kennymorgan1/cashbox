@@ -29,25 +29,27 @@ User.createUser = async (newUser) => {
 User.addAttribute = async (attrData, id) => {
   try {
     const { attribute, value } = attrData;
-
-    const userQuery = `SELECT * FROM Attributes WHERE user_id = ${id}`;
-
+    const userQuery = `SELECT * FROM Users WHERE user_ref = '${id}'`
     const {rows} = await sql.query(userQuery);
+    let user_id = rows[0].id
+    const attrQuery = `SELECT * FROM Attributes WHERE user_id = '${user_id}'`;
 
+    const attRes = await sql.query(attrQuery);
     let query;
-    if(rows.length < 1) {
+    if(attRes.rows.length < 1) {
       query = `
       INSERT INTO Attributes(${attribute}, user_id)
-      VALUES ('${value}', '${id}')
+      VALUES ('${value}', '${user_id}')
       RETURNING *
       `;
     } else {
       query = `
       Update Attributes SET ${attribute} = '${value}'
-      WHERE user_id = ${Number(id)}
+      WHERE user_id = ${user_id}
       `;
     }
     const res = await sql.query(query);
+
     return res.rows[0];
   } catch(error) {
     return error;
@@ -70,12 +72,27 @@ User.getAllUsers = async () => {
   }
 }
 
+User.getOneUser = async (id) => {
+  try {
+    const query =`
+    SELECT
+    *
+    FROM Esers
+    WHERE user_id = ${id}
+    `;
+    const res = await sql.query(query);
+    return res.rows;
+  } catch {
+    return error;
+  }
+}
+
 User.updateUser = async (updateUser, id) => {
   try {
     const { first_name, surname, date_of_birth } = updateUser;
     const query = `
     Update Users SET first_name = '${first_name}', surname = '${surname}', date_of_birth = '${date_of_birth}'
-    WHERE user_id = ${Number(id)}
+    WHERE user_id = ${id}
     RETURNING *
     `;
 
@@ -89,7 +106,7 @@ User.updateUser = async (updateUser, id) => {
 User.deleteUser = async (id) => {
   try {
     const query = `
-    DELETE from Users WHERE user_id = ${Number(id)}
+    DELETE from Users WHERE user_id = ${id}
     RETURNING id
     `;
     const res = await sql.query(query);

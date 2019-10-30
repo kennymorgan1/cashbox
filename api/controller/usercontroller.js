@@ -18,8 +18,6 @@ exports.addUserAttribute = async (req, res) => {
   const id = req.params.id;
 
   const user = await User.addAttribute(attrObj, id);
-  console.log('this is response', user);
-
 
   if (user.name == 'error') {
     return Response(res, 'An Error Ocured', 500, { error: 'internal server error'})
@@ -31,6 +29,17 @@ exports.addUserAttribute = async (req, res) => {
 exports.listUsers = async (req, res) => {
 
   const user = await User.getAllUsers();
+
+  if(user.name == 'error') {
+    return Response(res, 'An Error Ocured', 500, { error: 'internal server error'})
+  }
+
+  return Response(res, 'Success', 200, user)
+}
+
+exports.listOneUser = async (req, res) => {
+  const id = req.params.id;
+  const user = await User.getOneUser(id);
 
   if(user.name == 'error') {
     return Response(res, 'An Error Ocured', 500, { error: 'internal server error'})
