@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.options('*', cors());
 app.use(cors());
 
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist/cashbox'));
 
 app.use('/api/v1/user', userRoute);
 app.use('/api/v1/attribute', attributeRoute);
