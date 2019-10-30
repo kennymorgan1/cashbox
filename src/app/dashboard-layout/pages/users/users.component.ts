@@ -30,7 +30,6 @@ export class UsersComponent implements OnInit {
         result = result.filter(value => (value !== 'user_id'));
         result = result.filter(value => value !== 'id');
         this.attributes = result;
-        console.log(this.attributes);
       }
     });
   }
@@ -41,8 +40,6 @@ export class UsersComponent implements OnInit {
     this.service.getUsers().subscribe((data: any) => {
       if (data) {
         this.users = data.data;
-        this.headers = this.users[0];
-        console.log(this.headers);
       }
     });
   }
@@ -61,7 +58,7 @@ export class UsersComponent implements OnInit {
     (modalRef.componentInstance as GenericDeleteConfirmationComponent).itemDeleting = user.first_name;
     (modalRef.componentInstance as GenericDeleteConfirmationComponent).itemType = itemType;
     modalRef.componentInstance.confirmed.subscribe(() => {
-        this.deleteExpense(user.id, modalRef);
+        this.deleteExpense(user.user_ref, modalRef);
     });
   }
 

@@ -34,21 +34,21 @@
   <table class="table table-responsive">
     <thead>
     <tr>
-      <th scope="col">Attribute</th>
-      <th>Action</th>
+      <th scope="col" class="text-center" style="width: 150px;">Attribute</th>
+      <th class="text-center" style="width: 150px;">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let attribute of attributes">
       <!-- <td class="text-center"><a (click)="viewUSer(attribute)">View</a></td> -->
-      <td scope="row">{{attribute}}</td>
-      <td>
+      <td class="text-center" scope="row">{{attribute}}</td>
+      <td class="text-center">
         <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
           <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
               ngbDropdownToggle><i class="ion-ios-more"></i></button>
           <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
             <button
-            class="dropdown-item py-2" id="deleteItem">Edit Attribute</button>
+            class="dropdown-item py-2" id="deleteItem" [routerLink]= "['/update-attribute', attribute]">Edit Attribute</button>
             <div class="dropdown-divider my-0"></div>
             <button (click)="openDeleteModal(attribute)" class="dropdown-item py-2" type="button"
               id="deleteItem">Delete Attribute</button>
