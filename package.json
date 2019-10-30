@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run create-tables && node server.js",
+    "start": "node api/model/createtables && node server.js",
     "create-tables": "node api/model/createtables",
     "drop-tables": "node api/model/dropTables",
     "build": "ng build",
