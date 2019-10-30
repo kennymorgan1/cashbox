@@ -11,6 +11,7 @@ import { AddAttributeComponent } from './pages/add-attribute/add-attribute.compo
 import { AttributesComponent } from './pages/attributes/attributes.component';
 import { modals } from './pages/modals';
 import { AddUserAttributeComponent } from './pages/add-user-attribute/add-user-attribute.component';
+import { UpdateAttributeComponent } from './pages/update-attribute/update-attribute.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AddUserAttributeComponent } from './pages/add-user-attribute/add-user-a
     AddAttributeComponent,
     AttributesComponent,
     ...modals,
-    AddUserAttributeComponent
+    AddUserAttributeComponent,
+    UpdateAttributeComponent
   ],
   imports: [
     CommonModule,
