@@ -9,6 +9,6 @@ router.put('', updateAttribute);
 
 router.get('', listAttributes);
 
-router.delete('', deleteAttribute);
+router.delete('/:id', deleteAttribute);
 
 module.exports = router;

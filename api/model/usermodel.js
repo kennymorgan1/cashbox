@@ -106,7 +106,7 @@ User.updateUser = async (updateUser, id) => {
 User.deleteUser = async (id) => {
   try {
     const query = `
-    DELETE from Users WHERE user_id = ${id}
+    DELETE from Users WHERE user_ref = '${id}'
     RETURNING id
     `;
     const res = await sql.query(query);

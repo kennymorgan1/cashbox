@@ -27,7 +27,6 @@ Attribute.getAllAttributes = async() => {
     `;
 
     const res = await sql.query(query);
-    console.log(res);
 
     const field = res.fields.map(field => field.name);
     return field;
@@ -51,10 +50,8 @@ Attribute.updateAttribute = async (updateAttribute) => {
   }
 }
 
-Attribute.deleteAttribute = async (deleteAttribute) => {
+Attribute.deleteAttribute = async (attribute) => {
   try {
-    const { attribute } = deleteAttribute
-
     const query = `
     ALTER TABLE Attributes
     DROP COLUMN ${attribute}
@@ -62,7 +59,6 @@ Attribute.deleteAttribute = async (deleteAttribute) => {
     const res = await sql.query(query);
     return res;
   } catch(error) {
-    console.log('this is the error', error);
     return error;
   }
 }
