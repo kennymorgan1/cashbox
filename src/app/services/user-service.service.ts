@@ -12,6 +12,10 @@ export class UserServiceService {
     return this.http.get<any>(`${this.userUrl}`);
   }
 
+  getOneUser(id: string) {
+    return this.http.get<any>(`${this.userUrl}/${id}`);
+  }
+
   addUser(data: any) {
     return this.http.post<any>(`${this.userUrl}`, data);
   }
