@@ -62,6 +62,7 @@ Attribute.deleteAttribute = async (deleteAttribute) => {
     const res = await sql.query(query);
     return res;
   } catch(error) {
+    console.log('this is the error', error);
     return error;
   }
 }
