@@ -19,7 +19,7 @@
         <div class="form-group col-md-6">
             <label for="firstname">Attribute</label>
             <select formControlName="category"  class="form-control" id="exampleFormControlSelect1">
-                <option selected [ngValue]="null">Attribute</option>
+                <option selected>Attribute</option>
                 <option *ngFor="let attribute of attibutes"
                   value="{{attribute}}">
                   {{attribute}}
