@@ -1,3 +1,4 @@
+const uuid = require('uuid');
 const sql = require('./db');
 
 let User = function(user) {
@@ -10,10 +11,10 @@ let User = function(user) {
 User.createUser = async (newUser) => {
   try {
     const { first_name, surname, date_of_birth } = newUser;
-
+    let user_id = uuid();
     const query = `
-    INSERT INTO Users(first_name, surname, date_of_birth, created_at)
-    VALUES ('${first_name}', '${surname}', '${date_of_birth}', 'Now()')
+    INSERT INTO Users(first_name, surname, date_of_birth, created_at, user_id)
+    VALUES ('${first_name}', '${surname}', '${date_of_birth}', 'Now()', '${user_id}')
     RETURNING *
     `;
     const res = await sql.query(query)
@@ -73,7 +74,7 @@ User.updateUser = async (updateUser, id) => {
     const { first_name, surname, date_of_birth } = updateUser;
     const query = `
     Update Users SET first_name = '${first_name}', surname = '${surname}', date_of_birth = '${date_of_birth}'
-    WHERE id = ${Number(id)}
+    WHERE user_id = ${Number(id)}
     RETURNING *
     `;
 
@@ -87,7 +88,7 @@ User.updateUser = async (updateUser, id) => {
 User.deleteUser = async (id) => {
   try {
     const query = `
-    DELETE from Users WHERE id = ${Number(id)}
+    DELETE from Users WHERE user_id = ${Number(id)}
     RETURNING id
     `;
     const res = await sql.query(query);
