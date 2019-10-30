@@ -13,7 +13,7 @@ User.createUser = async (newUser) => {
     const { first_name, surname, date_of_birth } = newUser;
     let user_id = uuid();
     const query = `
-    INSERT INTO Users(first_name, surname, date_of_birth, created_at, user_id)
+    INSERT INTO Users(first_name, surname, date_of_birth, created_at, user_ref)
     VALUES ('${first_name}', '${surname}', '${date_of_birth}', 'Now()', '${user_id}')
     RETURNING *
     `;
