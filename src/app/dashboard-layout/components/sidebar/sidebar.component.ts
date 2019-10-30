@@ -9,7 +9,8 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard', icon: 'ion-ios-home', class: '' },
-  { path: '/users', title: 'Users', icon: 'ion-ios-home', class: ''}
+  { path: '/users', title: 'Users', icon: 'ion-ios-home', class: ''},
+  { path: '/add-user', title: 'Add user', icon: 'ion-ios-home', class: ''}
 ];
 
 @Component({

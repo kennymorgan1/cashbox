@@ -31,27 +31,26 @@
     <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col">Names</th>
+      <th scope="col">First&nbsp;Name</th>
+      <th scope="col">Surname</th>
       <th scope="col">Created&nbsp;on</th>
-      <th scope="col">Status</th>
-      <th>Last&nbsp;Login</th>
+      <th scope="col">Age</th>
       <th>Action</th>
-      <th scope="col" style="width: 60px;">Membership</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let user of users">
       <!-- <td class="text-center"><a (click)="viewUSer(user)">View</a></td> -->
-      <td class="text-center"></td>
-      <td scope="row">{{user.firstName}}&nbsp;{{user.lastName}}</td>
+      <td class="text-center"><a>View</a></td>
+      <td scope="row">{{user.first_name}}</td>
+      <td scope="row">{{user.surname}}</td>
       <!-- <td><ngb-highlight [result]="user.lastName" [term]="filter.value"></ngb-highlight></td>
       <td><ngb-highlight [result]="user.email" [term]="filter.value"></ngb-highlight></td>
       <td><ngb-highlight [result]="user.role" [term]="filter.value"></ngb-highlight></td>
       <td><ngb-highlight [result]="user.createdAt | date" [term]="filter.value"></ngb-highlight></td> -->
-      <td>{{user.createdAt | date: 'dd-mm-yyyy'}}</td>
+      <td>{{user.created_at | date: 'dd-mm-yyyy'}}</td>
       <!-- <td><p [ngClass]="{'active': user.active, 'inactive': !user.active}">{{userStatus(user.active)}}</p></td> -->
-      <td><p>dgdg</p></td>
-      <td>Online</td>
+      <td>{{user.age}}</td>
       <td>
           <span class="action-span">
               <i class="icon fa fa-pencil fa-1.5x text-info"
@@ -62,7 +61,6 @@
                 ngbTooltip="Delete User" id="deleteUSer"></i>
             </span>
       </td>
-      <td>{{user.role}}</td>
 
     </tr>
     </tbody>
