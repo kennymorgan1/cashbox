@@ -1,1 +1,32 @@
-<p>add-attribute works!</p>
+<p *ngIf="disableBtn">
+  <ngb-progressbar type="info" [value]="addingForum" [striped]="true" [animated]="true">
+      creating {{addingForum}}%
+  </ngb-progressbar>
+</p>
+
+<div class="container">
+  <div class="user">
+    <div class="user-image">
+      <img src="assets/img/user.png" alt="User Profile" class="img-responsive">
+  </div>
+    <form [formGroup]="attributeForm" (submit)="formSubmit()">
+      <div class="form-group">
+        <label for="attribute">Attribute Name</label>
+        <input type="text" formControlName="attribute" id="attribute" class="form-control fc-padding">
+        <div class="text-danger" *ngIf="attribute.touched && attribute.invalid" >
+          <span >Attribute  name is required</span>
+        </div>
+      </div>
+
+      <div class="events">
+        <div class="alert alert-danger w-100" *ngIf="error">{{errorMessage}}</div>
+        <div class="alert alert-success w-100" *ngIf="success">Attribute Added Succesfully</div>
+      </div>
+
+      <div class="input-container submit">
+        <button type="submit" [disabled]="getDisableState" class="sub-btn">
+          Add Attribute</button>
+      </div>
+  </form>
+</div>
+

@@ -8,14 +8,19 @@ import { UsersComponent } from './pages/users/users.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddAttributeComponent } from './pages/add-attribute/add-attribute.component';
+import { AttributesComponent } from './pages/attributes/attributes.component';
+import { modals } from './pages/modals';
 
 
 @NgModule({
+  entryComponents: [...modals],
   declarations: [
     DashboardComponent,
     UsersComponent,
     AddUserComponent,
-    AddAttributeComponent
+    AddAttributeComponent,
+    AttributesComponent,
+    ...modals
   ],
   imports: [
     CommonModule,

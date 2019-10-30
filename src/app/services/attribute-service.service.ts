@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AttributeServiceService {
-  private attributeUrl = '/api/v1/attribute';
+  private attributeUrl = 'https://kennymorgan1-cashbox.herokuapp.com/api/v1/attribute';
   constructor(private http: HttpClient) { }
 
   getAttribute() {
@@ -20,7 +20,7 @@ export class AttributeServiceService {
     return this.http.put<any>(`${this.attributeUrl}`, data);
   }
 
-  deleteAttribute() {
-    return this.http.delete<any>(`${this.attributeUrl}`);
+  deleteAttribute(data) {
+    return this.http.delete<any>(`${this.attributeUrl}`, data);
   }
 }
