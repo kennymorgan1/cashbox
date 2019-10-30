@@ -4,7 +4,7 @@ This project was done in respect to an assessment for a full-stack developer's r
 
 ## Development server
 
-This project was hosted on heroku with the url `https://github.com/kennymorgan1/cashbox`
+This project was hosted on heroku with the url https://github.com/kennymorgan1/cashbox
 
 ## Key features of this Application
 
