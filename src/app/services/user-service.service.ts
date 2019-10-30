@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserServiceService {
-  private userUrl = '/api/v1/user';
+  private userUrl = 'https://kennymorgan1-cashbox.herokuapp.com/api/v1/user';
   constructor(private http: HttpClient) { }
 
   getUsers() {

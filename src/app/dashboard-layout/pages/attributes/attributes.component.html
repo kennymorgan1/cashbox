@@ -1,4 +1,4 @@
-<div class="text-center" *ngIf="!(users)">
+<div class="text-center" *ngIf="!(attributes)">
   <ngb-progressbar type="info" [value]="fetchUserProgress" [striped]="true" [animated]="true">
       loading {{fetchUserProgress}}%
   </ngb-progressbar>
@@ -6,7 +6,7 @@
 
 <button id="myBtn" routerLink="/add-user" title="Add User"><i class="fa fa-plus fa-1.5"></i></button>
 
-<div class="admin-header" *ngIf="users && users.length">
+<div class="admin-header" *ngIf="attributes && attributes.length">
   <div class="form-group form-inline">
       Sort by <input class="form-control ml-2" type="text" name="searchTerm" />
   </div>
@@ -17,14 +17,14 @@
 </div>
 </div>
 
-<div class="text-center" *ngIf="users && (users.length === 0)">
+<div class="text-center" *ngIf="attributes && (attributes.length === 0)">
   <div class="loading-tab">
       <i class="fa fa-frown-o fa-2x text-secondary"></i><br />
       <h5 id="no-inflow-cat">No Users Yet</h5>
   </div>
 </div>
 
-<div *ngIf="users && users.length" class="table-responsive" id="local_data">
+<div *ngIf="attributes && attributes.length" class="table-responsive" id="local_data">
   <!-- <form>
     <div class="form-group form-inline">
         Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
@@ -35,36 +35,25 @@
     <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col">First&nbsp;Name</th>
-      <th scope="col">Surname</th>
-      <th scope="col">Created&nbsp;on</th>
-      <th scope="col">Age</th>
+      <th scope="col">Attribute</th>
       <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users">
-      <!-- <td class="text-center"><a (click)="viewUSer(user)">View</a></td> -->
-      <td class="text-center"><a>Add Attribute</a></td>
-      <td scope="row">{{user.first_name}}</td>
-      <td scope="row">{{user.surname}}</td>
-      <!-- <td><ngb-highlight [result]="user.lastName" [term]="filter.value"></ngb-highlight></td>
-      <td><ngb-highlight [result]="user.email" [term]="filter.value"></ngb-highlight></td>
-      <td><ngb-highlight [result]="user.role" [term]="filter.value"></ngb-highlight></td>
-      <td><ngb-highlight [result]="user.createdAt | date" [term]="filter.value"></ngb-highlight></td> -->
-      <td>{{user.created_at | date: 'dd-mm-yyyy'}}</td>
-      <!-- <td><p [ngClass]="{'active': user.active, 'inactive': !user.active}">{{userStatus(user.active)}}</p></td> -->
-      <td>{{user.age}}</td>
+    <tr *ngFor="let attribute of attributes">
+      <!-- <td class="text-center"><a (click)="viewUSer(attribute)">View</a></td> -->
+      <td class="text-center"><a>View</a></td>
+      <td scope="row">{{attribute}}</td>
       <td>
         <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
           <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
               ngbDropdownToggle><i class="ion-ios-more"></i></button>
           <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
             <button
-            class="dropdown-item py-2" id="deleteItem">Edit Item</button>
+            class="dropdown-item py-2" id="deleteItem">Edit User</button>
             <div class="dropdown-divider my-0"></div>
-            <button (click)="openDeleteModal(user)" class="dropdown-item py-2" type="button"
-              id="deleteItem">Delete Item</button>
+            <button (click)="openDeleteModal(attribute)" class="dropdown-item py-2" type="button"
+              id="deleteItem">Delete User</button>
           </div>
         </div>
       </td>

@@ -1,0 +1,48 @@
+<p *ngIf="disableBtn">
+  <ngb-progressbar type="info" [value]="addingForum" [striped]="true" [animated]="true">
+      creating {{addingForum}}%
+  </ngb-progressbar>
+</p>
+
+<div class="container">
+  <div class="user">
+    <div class="user-image">
+      <img src="assets/img/user.png" alt="User Profile" class="img-responsive">
+  </div>
+    <form [formGroup]="userForm" (submit)="formSubmit()">
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" formControlName="first_name" id="firstname" class="form-control fc-padding">
+        <div class="text-danger" *ngIf="first_name.touched && first_name.invalid" >
+          <span >First name is required</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="surname">Surname</label>
+        <input type="text" formControlName="surname" id="surname" class="form-control fc-padding">
+        <div class="text-danger" *ngIf="surname.touched && surname.invalid" >
+          <span >Surname is required</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" class="form-control fc-padding" id="date_of_birth" formControlName="date_of_birth">
+        <div class="text-danger" *ngIf="date_of_birth.touched && date_of_birth.invalid" >
+          <span >Date of birth is required</span>
+        </div>
+      </div>
+
+      <div class="events">
+        <div class="alert alert-danger w-100" *ngIf="error">{{errorMessage}}</div>
+        <div class="alert alert-success w-100" *ngIf="success">User Created Succesfully</div>
+      </div>
+
+      <div class="input-container submit">
+        <button type="submit" [disabled]="getDisableState" class="sub-btn">
+          Create User</button>
+      </div>
+  </form>
+</div>
+
