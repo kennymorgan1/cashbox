@@ -20,7 +20,7 @@ app.use('/api/v1/user', userRoute);
 app.use('/api/v1/attribute', attributeRoute);
 
 app.all('*', (req,res) => {
-  res.status(200).sendFile(__dirname+'/dist/index.html');
+  res.status(200).sendFile(__dirname+'/dist/cashbox/index.html');
 });
 
 const port = process.env.PORT || 7000;
