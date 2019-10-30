@@ -4,7 +4,7 @@ exports.userTable = `
     first_name varchar(255),
     surname varchar(255),
     date_of_birth date,
-    user_id varchar(255),
+    user_ref varchar(255),
     created_at date
   )`;
 

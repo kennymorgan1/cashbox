@@ -1,0 +1,46 @@
+<div class="text-center" *ngIf="!(userData)">
+  <ngb-progressbar type="info" [value]="addingForum" [striped]="true" [animated]="true">
+    loading {{addingForum}}%
+</ngb-progressbar>
+</div>
+<p *ngIf="disableBtn">
+  <ngb-progressbar type="info" [value]="fetchUserProgress" [striped]="true" [animated]="true">
+      loading {{fetchUserProgress}}%
+  </ngb-progressbar>
+</p>
+
+<div *ngIf="userData" class="container">
+  <div class="user">
+    <div class="user-image">
+      <img src="assets/img/user.png" alt="User Profile" class="img-responsive">
+  </div>
+    <form [formGroup]="userForm">
+      <div class="row">
+        <div class="form-group col-md-6">
+            <label for="firstname">Attribute</label>
+            <select formControlName="category"  class="form-control" id="exampleFormControlSelect1">
+                <option selected [ngValue]="null">Attribute</option>
+                <option *ngFor="let attribute of attibutes"
+                  value="{{attribute}}">
+                  {{attribute}}
+                </option>
+              </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="value">Value</label>
+          <input type="text" formControlName="value" id="value" class="form-control" readonly>
+        </div>
+      </div>
+
+      <div class="events">
+        <div class="alert alert-danger w-100" *ngIf="error">{{errorMessage}}</div>
+        <div class="alert alert-success w-100" *ngIf="success">Attribute Added Succesfully</div>
+    </div>
+
+    <div class="input-container submit">
+      <button type="submit" [disabled]="getDisableState" class="sub-btn">
+        Add User Attribute</button>
+    </div>
+  </form>
+</div>
+

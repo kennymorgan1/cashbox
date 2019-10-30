@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddAttributeComponent } from './pages/add-attribute/add-attribute.component';
 import { AttributesComponent } from './pages/attributes/attributes.component';
 import { modals } from './pages/modals';
+import { AddUserAttributeComponent } from './pages/add-user-attribute/add-user-attribute.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { modals } from './pages/modals';
     AddUserComponent,
     AddAttributeComponent,
     AttributesComponent,
-    ...modals
+    ...modals,
+    AddUserAttributeComponent
   ],
   imports: [
     CommonModule,
