@@ -35,7 +35,6 @@
       <th scope="col">Created&nbsp;on</th>
       <th scope="col">Age</th>
       <th *ngFor="let attribute of attributes">{{attribute}}</th>
-      <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -46,19 +45,6 @@
       <td>{{user.created_at | date: 'dd-mm-yyyy'}}</td>
       <td>{{user.age}}</td>
       <td *ngFor="let attribute of attributes">{{user[attribute]}}</td>
-      <td>
-        <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
-          <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
-              ngbDropdownToggle><i class="ion-ios-more"></i></button>
-          <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
-            <button
-            class="dropdown-item py-2" id="deleteItem">Edit Item</button>
-            <div class="dropdown-divider my-0"></div>
-            <button (click)="openDeleteModal(user)" class="dropdown-item py-2" type="button"
-              id="deleteItem">Delete Item</button>
-          </div>
-        </div>
-      </td>
 
     </tr>
     </tbody>
