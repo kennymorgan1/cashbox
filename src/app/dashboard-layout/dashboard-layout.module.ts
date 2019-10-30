@@ -7,13 +7,15 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddAttributeComponent } from './pages/add-attribute/add-attribute.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     UsersComponent,
-    AddUserComponent
+    AddUserComponent,
+    AddAttributeComponent
   ],
   imports: [
     CommonModule,
