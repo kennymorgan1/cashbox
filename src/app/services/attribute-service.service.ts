@@ -21,6 +21,6 @@ export class AttributeServiceService {
   }
 
   deleteAttribute(data) {
-    return this.http.delete<any>(`${this.attributeUrl}`, data);
+    return this.http.delete<any>(`${this.attributeUrl}/${data}`);
   }
 }

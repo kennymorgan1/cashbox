@@ -4,7 +4,7 @@
   </ngb-progressbar>
 </div>
 
-<button id="myBtn" routerLink="/add-user" title="Add User"><i class="fa fa-plus fa-1.5"></i></button>
+<button id="myBtn" routerLink="/add-attribute" title="Add Attribute"><i class="fa fa-plus fa-1.5"></i></button>
 
 <div class="admin-header" *ngIf="attributes && attributes.length">
   <div class="form-group form-inline">
@@ -34,7 +34,6 @@
   <table class="table table-responsive">
     <thead>
     <tr>
-      <th scope="col"></th>
       <th scope="col">Attribute</th>
       <th>Action</th>
     </tr>
@@ -42,7 +41,6 @@
     <tbody>
     <tr *ngFor="let attribute of attributes">
       <!-- <td class="text-center"><a (click)="viewUSer(attribute)">View</a></td> -->
-      <td class="text-center"><a>View</a></td>
       <td scope="row">{{attribute}}</td>
       <td>
         <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
@@ -50,10 +48,10 @@
               ngbDropdownToggle><i class="ion-ios-more"></i></button>
           <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
             <button
-            class="dropdown-item py-2" id="deleteItem">Edit User</button>
+            class="dropdown-item py-2" id="deleteItem">Edit Attribute</button>
             <div class="dropdown-divider my-0"></div>
             <button (click)="openDeleteModal(attribute)" class="dropdown-item py-2" type="button"
-              id="deleteItem">Delete User</button>
+              id="deleteItem">Delete Attribute</button>
           </div>
         </div>
       </td>
@@ -61,15 +59,4 @@
     </tr>
     </tbody>
   </table>
-
-  <!-- <div class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-    </ngb-pagination>
-
-    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-      <option [ngValue]="2">2 items per page</option>
-      <option [ngValue]="4">4 items per page</option>
-      <option [ngValue]="6">6 items per page</option>
-    </select>
-  </div> -->
 </div>
