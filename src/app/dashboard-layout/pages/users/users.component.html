@@ -41,14 +41,16 @@
     </thead>
     <tbody>
     <tr *ngFor="let user of users">
-      <td class="text-center"><a (click)="viewUSer(user)">View</a></td>
+      <!-- <td class="text-center"><a (click)="viewUSer(user)">View</a></td> -->
+      <td class="text-center"></td>
       <td scope="row">{{user.firstName}}&nbsp;{{user.lastName}}</td>
       <!-- <td><ngb-highlight [result]="user.lastName" [term]="filter.value"></ngb-highlight></td>
       <td><ngb-highlight [result]="user.email" [term]="filter.value"></ngb-highlight></td>
       <td><ngb-highlight [result]="user.role" [term]="filter.value"></ngb-highlight></td>
       <td><ngb-highlight [result]="user.createdAt | date" [term]="filter.value"></ngb-highlight></td> -->
       <td>{{user.createdAt | date: 'dd-mm-yyyy'}}</td>
-      <td><p [ngClass]="{'active': user.active, 'inactive': !user.active}">{{userStatus(user.active)}}</p></td>
+      <!-- <td><p [ngClass]="{'active': user.active, 'inactive': !user.active}">{{userStatus(user.active)}}</p></td> -->
+      <td><p>dgdg</p></td>
       <td>Online</td>
       <td>
           <span class="action-span">
