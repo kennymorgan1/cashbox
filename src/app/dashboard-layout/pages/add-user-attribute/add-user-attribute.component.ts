@@ -32,8 +32,9 @@ export class AddUserAttributeComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log(this.route.snapshot.paramMap.get('userId'));
     this.listAttributes();
-    this.listOneUser();
+    // this.listOneUser();
     this.userFormField();
   }
 
@@ -76,7 +77,6 @@ export class AddUserAttributeComponent implements OnInit {
         attribute: this.attribute.value,
         value: this.value.value
       };
-      console.log(payload);
       this.forumCreatingProgress();
       this.service.updateUserAttribute(payload, id).subscribe(
         (data: any) => {

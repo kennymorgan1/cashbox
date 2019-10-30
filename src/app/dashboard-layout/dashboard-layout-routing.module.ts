@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddAttributeComponent } from './pages/add-attribute/add-attribute.component';
+import { AddUserAttributeComponent } from './pages/add-user-attribute/add-user-attribute.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,9 @@ const routes: Routes = [
   },
   {
     path: 'add-attribute', component: AddAttributeComponent
+  },
+  {
+    path: 'update-user-atrribute/:userId', component: AddUserAttributeComponent
   }
 ];
 

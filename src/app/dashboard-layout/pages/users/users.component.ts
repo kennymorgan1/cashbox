@@ -1,3 +1,4 @@
+import { AttributeServiceService } from './../../../services/attribute-service.service';
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,13 +11,28 @@ import { GenericDeleteConfirmationComponent } from '../modals';
 })
 export class UsersComponent implements OnInit {
   users;
+  headers;
+  attributes;
   fetchingUsers = false;
   setTimeProgress;
   fetchUserProgress = 10;
-  constructor(private service: UserServiceService, private modalService: NgbModal) { }
+  constructor(private service: UserServiceService, private modalService: NgbModal, private attrService: AttributeServiceService) { }
 
   ngOnInit() {
+    this.listAttributes();
     this.listUsers();
+  }
+
+  listAttributes() {
+    this.attrService.getAttribute().subscribe((data: any) => {
+      if (data) {
+        let result = data.data;
+        result = result.filter(value => (value !== 'user_id'));
+        result = result.filter(value => value !== 'id');
+        this.attributes = result;
+        console.log(this.attributes);
+      }
+    });
   }
 
   listUsers() {
@@ -25,6 +41,8 @@ export class UsersComponent implements OnInit {
     this.service.getUsers().subscribe((data: any) => {
       if (data) {
         this.users = data.data;
+        this.headers = this.users[0];
+        console.log(this.headers);
       }
     });
   }

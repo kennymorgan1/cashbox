@@ -36,7 +36,7 @@ exports.updateAttribute = async (req, res) => {
 }
 
 exports.deleteAttribute = async (req, res) => {
-  const columnObj = req.body;
+  const columnObj = req.params.id;
 
   const column = await Attribute.deleteAttribute(columnObj);
 

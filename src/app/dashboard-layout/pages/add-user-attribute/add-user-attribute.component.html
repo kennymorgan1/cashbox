@@ -1,34 +1,40 @@
-<div class="text-center" *ngIf="!(userData)">
+<div class="text-center" *ngIf="disableBtn">
   <ngb-progressbar type="info" [value]="addingForum" [striped]="true" [animated]="true">
     loading {{addingForum}}%
 </ngb-progressbar>
 </div>
-<p *ngIf="disableBtn">
+<!-- <p *ngIf="disableBtn">
   <ngb-progressbar type="info" [value]="fetchUserProgress" [striped]="true" [animated]="true">
       loading {{fetchUserProgress}}%
   </ngb-progressbar>
-</p>
+</p> -->
 
-<div *ngIf="userData" class="container">
+<div class="container">
   <div class="user">
     <div class="user-image">
       <img src="assets/img/user.png" alt="User Profile" class="img-responsive">
   </div>
-    <form [formGroup]="userForm">
+    <form [formGroup]="userForm" (submit)="formSubmit()">
       <div class="row">
         <div class="form-group col-md-6">
             <label for="firstname">Attribute</label>
-            <select formControlName="category"  class="form-control" id="exampleFormControlSelect1">
+            <select formControlName="attribute"  class="form-control fc-padding" id="exampleFormControlSelect1">
                 <option selected [ngValue]="null">Attribute</option>
                 <option *ngFor="let attribute of attributes"
                   value="{{attribute}}">
                   {{attribute}}
                 </option>
               </select>
+              <div class="text-danger" *ngIf="attribute.touched && attribute.invalid" >
+                <span>Attribute is required</span>
+              </div>
         </div>
         <div class="form-group col-md-6">
           <label for="value">Value</label>
-          <input type="text" formControlName="value" id="value" class="form-control" readonly>
+          <input type="text" formControlName="value" id="value" class="form-control fc-padding">
+          <div class="text-danger" *ngIf="value.touched && value.invalid" >
+            <span>Value is required</span>
+          </div>
         </div>
       </div>
 

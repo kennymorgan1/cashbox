@@ -25,11 +25,6 @@
 </div>
 
 <div *ngIf="users && users.length" class="table-responsive" id="local_data">
-  <!-- <form>
-    <div class="form-group form-inline">
-        Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
-    </div>
-  </form> -->
 
   <table class="table table-responsive">
     <thead>
@@ -39,22 +34,18 @@
       <th scope="col">Surname</th>
       <th scope="col">Created&nbsp;on</th>
       <th scope="col">Age</th>
+      <th *ngFor="let attribute of attributes">{{attribute}}</th>
       <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let user of users">
-      <!-- <td class="text-center"><a (click)="viewUSer(user)">View</a></td> -->
-      <td class="text-center"><a>Add Attribute</a></td>
+      <td class="text-center"><a [routerLink]= "['/update-user-atrribute', user.user_ref]">Add Attribute</a></td>
       <td scope="row">{{user.first_name}}</td>
       <td scope="row">{{user.surname}}</td>
-      <!-- <td><ngb-highlight [result]="user.lastName" [term]="filter.value"></ngb-highlight></td>
-      <td><ngb-highlight [result]="user.email" [term]="filter.value"></ngb-highlight></td>
-      <td><ngb-highlight [result]="user.role" [term]="filter.value"></ngb-highlight></td>
-      <td><ngb-highlight [result]="user.createdAt | date" [term]="filter.value"></ngb-highlight></td> -->
       <td>{{user.created_at | date: 'dd-mm-yyyy'}}</td>
-      <!-- <td><p [ngClass]="{'active': user.active, 'inactive': !user.active}">{{userStatus(user.active)}}</p></td> -->
       <td>{{user.age}}</td>
+      <td *ngFor="let attribute of attributes">{{user[attribute]}}</td>
       <td>
         <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
           <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
@@ -72,15 +63,4 @@
     </tr>
     </tbody>
   </table>
-
-  <!-- <div class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-    </ngb-pagination>
-
-    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-      <option [ngValue]="2">2 items per page</option>
-      <option [ngValue]="4">4 items per page</option>
-      <option [ngValue]="6">6 items per page</option>
-    </select>
-  </div> -->
 </div>
